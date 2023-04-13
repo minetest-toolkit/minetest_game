@@ -229,7 +229,7 @@ local function rail_on_step(self, dtime)
 			-- No rail found: set to the expected position
 			pos = new_pos
 			update.pos = true
-			dir = new_dir
+			dir = new_dir --[[@as mt.Vector]]
 		end
 	elseif self.old_pos and self.old_dir.y ~= 1 and not self.punched then
 		-- Stop wiggle

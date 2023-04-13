@@ -1,0 +1,8 @@
+{
+  "runtime": { "version": "LuaJIT" },
+  "diagnostics.disable": [
+    "lowercase-global",
+    "need-check-nil",
+    "duplicate-set-field"
+  ]
+}

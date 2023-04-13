@@ -30,6 +30,7 @@ function carts:manage_attachment(player, obj)
 	end
 end
 
+---@return mt.Vector
 function carts:velocity_to_dir(v)
 	if math.abs(v.x) > math.abs(v.z) then
 		return {x=carts:get_sign(v.x), y=carts:get_sign(v.y), z=0}

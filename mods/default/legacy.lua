@@ -1,4 +1,5 @@
 -- mods/default/legacy.lua
+---@diagnostic disable
 
 -- Horrible stuff to support old code registering falling nodes
 -- Don't use this and never do what this does, it's completely wrong!

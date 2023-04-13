@@ -192,7 +192,7 @@ local function furnace_node_timer(pos, elapsed)
 					src_time = 0
 				else
 					-- prevent blocking of fuel inventory (for automatization mods)
-					local is_fuel = minetest.get_craft_result({method = "fuel", width = 1, items = {afterfuel.items[1]:to_string()}})
+					local is_fuel = minetest.get_craft_result({method = "fuel", width = 1, items = {afterfuel.items[1]--[[@as mt.ItemStack]]:to_string()}})
 					if is_fuel.time == 0 then
 						table.insert(fuel.replacements, afterfuel.items[1])
 						inv:set_stack("fuel", 1, "")

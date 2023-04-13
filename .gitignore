@@ -20,3 +20,8 @@
 .metadata
 # Idea IDE
 .idea/*
+# VSCode
+.vscode/*
+
+## LUA API
+/.api

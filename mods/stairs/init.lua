@@ -306,7 +306,7 @@ if replace then
 		interval = 16,
 		chance = 1,
 		action = function(pos, node)
-			node.name = minetest.registered_nodes[node.name].replace_name
+			node.name = minetest.registered_nodes[node.name]--[[@as table]].replace_name
 			node.param2 = node.param2 + 20
 			if node.param2 == 21 then
 				node.param2 = 23

@@ -178,8 +178,9 @@ local function entity_physics(pos, radius, drops)
 				local entity_drops = {}
 				local objdef = minetest.registered_entities[luaobj.name]
 
-				if objdef and objdef.on_blast then
-					do_damage, do_knockback, entity_drops = objdef.on_blast(luaobj, damage)
+				if objdef and objdef.on_blast --[[@as function]] then
+					do_damage, do_knockback, entity_drops =
+						objdef.on_blast--[[@as function]](luaobj, damage)
 				end
 
 				if do_knockback then
@@ -244,7 +245,7 @@ local function add_effects(pos, radius, drops)
 			if def then
 				node = { name = name }
 				if def.tiles and type(def.tiles[1]) == "string" then
-					texture = def.tiles[1]
+					texture = def.tiles[1] --[[@as string]]
 				end
 			end
 		end
@@ -275,8 +276,8 @@ function tnt.burn(pos, nodename)
 	local def = minetest.registered_nodes[name]
 	if not def then
 		return
-	elseif def.on_ignite then
-		def.on_ignite(pos)
+	elseif def.on_ignite --[[@as function]] then
+		def.on_ignite--[[@as function]](pos)
 	elseif minetest.get_item_group(name, "tnt") > 0 then
 		minetest.swap_node(pos, {name = name .. "_burning"})
 		minetest.sound_play("tnt_ignite", {pos = pos, gain = 1.0}, true)

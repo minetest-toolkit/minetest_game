@@ -40,7 +40,7 @@ farming.hoe_on_use = function(itemstack, user, pointed_thing, uses)
 	end
 
 	-- check if (wet) soil defined
-	local regN = minetest.registered_nodes
+	local regN = minetest.registered_nodes --[[@as table]]
 	if regN[under.name].soil == nil or regN[under.name].soil.wet == nil or regN[under.name].soil.dry == nil then
 		return
 	end
@@ -190,7 +190,7 @@ end
 farming.grow_plant = function(pos, elapsed)
 	local node = minetest.get_node(pos)
 	local name = node.name
-	local def = minetest.registered_nodes[name]
+	local def = minetest.registered_nodes[name] --[[@as table]]
 
 	if not def.next_plant then
 		-- disable timer for fully grown plant
@@ -212,7 +212,7 @@ farming.grow_plant = function(pos, elapsed)
 					placenode.param2 = def.place_param2
 				end
 				minetest.swap_node(pos, placenode)
-				if minetest.registered_nodes[def.next_plant].next_plant then
+				if minetest.registered_nodes[def.next_plant]--[[@as table]].next_plant then
 					tick(pos)
 					return
 				end
@@ -244,7 +244,7 @@ farming.grow_plant = function(pos, elapsed)
 	minetest.swap_node(pos, placenode)
 
 	-- new timer needed?
-	if minetest.registered_nodes[def.next_plant].next_plant then
+	if minetest.registered_nodes[def.next_plant]--[[@as table]].next_plant then
 		tick(pos)
 	end
 	return

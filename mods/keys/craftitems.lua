@@ -20,7 +20,7 @@ minetest.register_craftitem("keys:skeleton_key", {
 			return itemstack
 		end
 
-		local node_reg = minetest.registered_nodes[node.name]
+		local node_reg = minetest.registered_nodes[node.name]--[[@as table]]
 		local on_skeleton_key_use = node_reg and node_reg.on_skeleton_key_use
 		if not on_skeleton_key_use then
 			return itemstack
@@ -86,7 +86,7 @@ minetest.register_craftitem("keys:key", {
 			return itemstack
 		end
 
-		local ndef = minetest.registered_nodes[node.name]
+		local ndef = minetest.registered_nodes[node.name]--[[@as table]]
 		if not ndef then
 			return itemstack
 		end

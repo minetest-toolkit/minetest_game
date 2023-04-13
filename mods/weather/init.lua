@@ -84,10 +84,14 @@ local function update_clouds()
 	-- Add random time offset to avoid identical behaviour each server session.
 	local time = os.difftime(os.time(), os_time_0) - t_offset
 
-	nobj_density = nobj_density or minetest.get_perlin(np_density)
-	nobj_thickness = nobj_thickness or minetest.get_perlin(np_thickness)
-	nobj_speedx = nobj_speedx or minetest.get_perlin(np_speedx)
-	nobj_speedz = nobj_speedz or minetest.get_perlin(np_speedz)
+	---@type mt.PerlinNoise
+	nobj_density = nobj_density or minetest.get_perlin(np_density)--[[@as mt.PerlinNoise]]
+	---@type mt.PerlinNoise
+	nobj_thickness = nobj_thickness or minetest.get_perlin(np_thickness)--[[@as mt.PerlinNoise]]
+	---@type mt.PerlinNoise
+	nobj_speedx = nobj_speedx or minetest.get_perlin(np_speedx)--[[@as mt.PerlinNoise]]
+	---@type mt.PerlinNoise
+	nobj_speedz = nobj_speedz or minetest.get_perlin(np_speedz)--[[@as mt.PerlinNoise]]
 
 	local n_density = nobj_density:get_2d({x = time, y = 0}) -- 0 to 1
 	local n_thickness = nobj_thickness:get_2d({x = time, y = 0}) -- 0 to 1

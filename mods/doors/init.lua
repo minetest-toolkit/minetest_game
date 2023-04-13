@@ -131,9 +131,10 @@ local transform = {
 function doors.door_toggle(pos, node, clicker)
 	local meta = minetest.get_meta(pos)
 	node = node or minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
+	local def = minetest.registered_nodes[node.name] --[[@as table]]
 	local name = def.door.name
 
+	---@type string|number|nil
 	local state = meta:get_string("state")
 	if state == "" then
 		-- fix up lvm-placed right-hinged doors, default closed
@@ -567,7 +568,7 @@ function doors.trapdoor_toggle(pos, node, clicker)
 		return false
 	end
 
-	local def = minetest.registered_nodes[node.name]
+	local def = minetest.registered_nodes[node.name] --[[@as table]]
 
 	if string.sub(node.name, -5) == "_open" then
 		minetest.sound_play(def.sound_close,
@@ -783,7 +784,7 @@ function doors.register_fencegate(name, def)
 		groups = def.groups,
 		sounds = def.sounds,
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-			local node_def = minetest.registered_nodes[node.name]
+			local node_def = minetest.registered_nodes[node.name] --[[@as table]]
 			minetest.swap_node(pos, {name = node_def._gate, param2 = node.param2})
 			minetest.sound_play(node_def._gate_sound, {pos = pos, gain = 0.15,
 				max_hear_distance = 8}, true)

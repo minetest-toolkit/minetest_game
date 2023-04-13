@@ -96,7 +96,7 @@ minetest.register_tool("fire:flint_and_steel", {
 		local player_name = user:get_player_name()
 		if pointed_thing.type == "node" then
 			local node_under = minetest.get_node(pointed_thing.under).name
-			local nodedef = minetest.registered_nodes[node_under]
+			local nodedef = minetest.registered_nodes[node_under] --[[@as table]]
 			if not nodedef then
 				return
 			end
@@ -295,7 +295,7 @@ if fire_enabled then
 				return
 			end
 			local flammable_node = minetest.get_node(p)
-			local def = minetest.registered_nodes[flammable_node.name]
+			local def = minetest.registered_nodes[flammable_node.name] --[[@as table]]
 			if def.on_burn then
 				def.on_burn(p)
 			else

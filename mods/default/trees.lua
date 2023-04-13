@@ -138,6 +138,7 @@ local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
 
 	-- Force leaves near the trunk
 	for z_dist = -1, 1 do
+	---@diagnostic disable-next-line: count-down-loop
 	for y_dist = -size, 1 do
 		local vi = a:index(x - 1, y + height + y_dist, z + z_dist)
 		for x_dist = -1, 1 do
@@ -537,7 +538,7 @@ function default.sapling_on_place(itemstack, placer, pointed_thing,
 	if pdef and pdef.on_rightclick and
 			not (placer and placer:is_player() and
 			placer:get_player_control().sneak) then
-		return pdef.on_rightclick(pos, node, placer, itemstack, pointed_thing)
+		return pdef.on_rightclick(pos, node--[[@as mt.Node]], placer, itemstack, pointed_thing)
 	end
 
 	if not pdef or not pdef.buildable_to then

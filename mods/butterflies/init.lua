@@ -123,7 +123,7 @@ minetest.register_on_generated(function(minp, maxp, blockseed)
 	local gennotify = minetest.get_mapgen_object("gennotify")
 	local poslist = {}
 
-	for _, pos in ipairs(gennotify["decoration#"..butterflies] or {}) do
+	for _, pos in ipairs(gennotify["decoration#"..butterflies]--[[@as table]] or {}) do
 		local deco_pos = {x = pos.x, y = pos.y + 3, z = pos.z}
 		table.insert(poslist, deco_pos)
 	end

@@ -174,6 +174,7 @@ local player_attached = player_api.player_attached
 
 -- Prevent knockback for attached players
 local old_calculate_knockback = minetest.calculate_knockback
+---@diagnostic disable-next-line: duplicate-set-field
 function minetest.calculate_knockback(player, ...)
 	if player_attached[player:get_player_name()] then
 		return 0
@@ -182,7 +183,7 @@ function minetest.calculate_knockback(player, ...)
 end
 
 -- Check each player and apply animations
-function player_api.globalstep()
+function player_api.globalstep(...)
 	for _, player in ipairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
 		local player_data = players[name]

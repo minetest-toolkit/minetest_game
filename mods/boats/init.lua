@@ -259,7 +259,7 @@ minetest.register_craftitem("boats:boat", {
 			return itemstack
 		end
 		pointed_thing.under.y = pointed_thing.under.y + 0.5
-		boat = minetest.add_entity(pointed_thing.under, "boats:boat")
+		boat = minetest.add_entity(pointed_thing.under, "boats:boat") --[[@as mt.ObjectRef]]
 		if boat then
 			if placer then
 				boat:set_yaw(placer:get_look_horizontal())

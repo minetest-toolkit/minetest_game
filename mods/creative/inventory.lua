@@ -232,7 +232,7 @@ local registered_craftitems = {}
 
 minetest.register_on_mods_loaded(function()
 	for name, def in pairs(minetest.registered_items) do
-		local group = def.groups or {}
+		local group = def --[[@as table]] or {}
 
 		local nogroup = not (group.node or group.tool or group.craftitem)
 		if group.node or (nogroup and minetest.registered_nodes[name]) then

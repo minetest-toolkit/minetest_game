@@ -186,8 +186,7 @@ local function item_button_fs(fs, x, y, item, element_name, groups)
 			for _, group in ipairs(groups) do
 				table.insert(groupstr, minetest.colorize("yellow", group))
 			end
-			groupstr = table.concat(groupstr, ", ")
-			tooltip = S("Any item belonging to the group(s): @1", groupstr)
+			tooltip = S("Any item belonging to the group(s): @1", table.concat(groupstr, ", "))
 		end
 	elseif is_fuel(item) then
 		local itemdef = minetest.registered_items[item:match("%S*")]

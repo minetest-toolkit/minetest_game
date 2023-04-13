@@ -182,7 +182,7 @@ minetest.register_abm({
 	interval = 15,
 	chance = 4,
 	action = function(pos, node)
-		local n_def = minetest.registered_nodes[node.name] or nil
+		local n_def = minetest.registered_nodes[node.name]--[[@as table]] or nil
 		local wet = n_def.soil.wet or nil
 		local base = n_def.soil.base or nil
 		local dry = n_def.soil.dry or nil

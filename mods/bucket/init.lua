@@ -77,7 +77,7 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 						user:get_player_control().sneak) then
 					return ndef.on_rightclick(
 						pointed_thing.under,
-						node, user,
+						node --[[@as mt.Node]], user,
 						itemstack)
 				end
 
@@ -91,7 +91,7 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 					-- not buildable to; place the liquid above
 					-- check if the node above can be replaced
 
-					lpos = pointed_thing.above
+					lpos = pointed_thing.above --[[@as mt.Vector]]
 					node = minetest.get_node_or_nil(lpos)
 					local above_ndef = node and minetest.registered_nodes[node.name]
 
@@ -107,7 +107,7 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 					return
 				end
 
-				minetest.set_node(lpos, {name = source})
+				minetest.set_node(lpos --[[@as mt.Vector]], {name = source})
 				return ItemStack("bucket:bucket_empty")
 			end
 		})
@@ -148,7 +148,7 @@ minetest.register_craftitem("bucket:bucket_empty", {
 			if item_count > 1 then
 
 				-- if space in inventory add filled bucked, otherwise drop as item
-				local inv = user:get_inventory()
+				local inv = user:get_inventory() --[[@as mt.InvRef]]
 				if inv:room_for_item("main", {name=liquiddef.itemname}) then
 					inv:add_item("main", liquiddef.itemname)
 				else
@@ -163,6 +163,7 @@ minetest.register_craftitem("bucket:bucket_empty", {
 			end
 
 			-- force_renew requires a source neighbour
+			---@type boolean|mt.Vector|nil
 			local source_neighbor = false
 			if liquiddef.force_renew then
 				source_neighbor =

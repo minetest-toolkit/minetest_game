@@ -112,7 +112,7 @@ screwdriver.handler = function(itemstack, user, pointed_thing, mode, uses)
 	end
 
 	local node = minetest.get_node(pos)
-	local ndef = minetest.registered_nodes[node.name]
+	local ndef = minetest.registered_nodes[node.name] --[[@as table]]
 	if not ndef then
 		return itemstack
 	end

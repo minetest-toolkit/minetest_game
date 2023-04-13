@@ -4,7 +4,7 @@ local builtin_item = minetest.registered_entities["__builtin:item"]
 
 local item = {
 	set_item = function(self, itemstring)
-		builtin_item.set_item(self, itemstring)
+		builtin_item.set_item--[[@as function]](self, itemstring)
 
 		local stack = ItemStack(itemstring)
 		local itemdef = minetest.registered_items[stack:get_name()]

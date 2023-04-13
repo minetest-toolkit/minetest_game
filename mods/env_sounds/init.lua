@@ -73,7 +73,7 @@ local function update_sound(player)
 			-- Calculate gain
 			local gain = def.base_volume
 			if type(def.per_node) == 'table' then
-				for name, multiplier in pairs(def.per_node) do
+				for name, multiplier in pairs(def.per_node--[[@as table]]) do
 					if pos[name] then
 						gain = gain + #pos[name] * multiplier
 					end
